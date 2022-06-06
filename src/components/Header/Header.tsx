@@ -1,4 +1,8 @@
 import * as React from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+// MUI
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,10 +17,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['map', 'pricing', 'socials'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
+  let navigate = useNavigate();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -35,9 +41,13 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
+  const handleNavigate = (whereTo: string) => {
+    navigate(whereTo, { replace: true });
+  };
+
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="fixed">
+      <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -46,7 +56,7 @@ const Navbar = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
+              display: { xxs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
@@ -57,7 +67,7 @@ const Navbar = () => {
             VINCEPACHECO
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xxs: 'flex', md: 'none' } }}>
             <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
             </IconButton>
@@ -76,7 +86,7 @@ const Navbar = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' }
+                display: { xxs: 'block', md: 'none' }
               }}
             >
               {pages.map((page) => (
@@ -93,7 +103,7 @@ const Navbar = () => {
             href=""
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xxs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
@@ -105,9 +115,9 @@ const Navbar = () => {
             VINCEPACHECO
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: { xs: 'center', md: 'flex-end' } }}>
+          <Box sx={{ flexGrow: 1, display: { xxs: 'none', md: 'flex' }, justifyContent: { xxs: 'center', md: 'flex-end' } }}>
             {pages.map((page) => (
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+              <Button key={page} onClick={() => handleNavigate(page)} sx={{ my: 2, color: 'white', display: 'block' }}>
                 {page}
               </Button>
             ))}

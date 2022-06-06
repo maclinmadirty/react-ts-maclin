@@ -14,7 +14,28 @@ declare module '@mui/material/styles' {
   }
 }
 
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xxs: true;
+    xs: true;
+    sm: true;
+    md: true;
+    lg: true;
+    xl: true;
+  }
+}
+
 const lightTheme = createTheme({
+  breakpoints: {
+    values: {
+      xxs: 300,
+      xs: 400,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536
+    }
+  },
   palette: {
     mode: 'light',
     primary: {
